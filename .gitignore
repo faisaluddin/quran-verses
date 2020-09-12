@@ -1,5 +1,5 @@
 env/
 /.vscode
-.pyc
 celerybeat-schedule
-.sqlite3
+*.pyc
+*.sqlite3
