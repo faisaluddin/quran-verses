@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  redis:
+    container_name: Redis
+    image: "redis:alpine"
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"
+  web:
+    build: .
+    command: bash -c "python /code/manage.py migrate --noinput && python /code/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+  celery:
+    build: .
+    command: celery -A config worker -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+  celery-beat:
+    build: .
+    command: celery -A config beat -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
