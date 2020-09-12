@@ -1,2 +1,5 @@
 env/
 /.vscode
+*/_pycache__
+celerybeat-schedule
+*/.sqlite3
