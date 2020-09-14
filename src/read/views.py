@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import FormView
-from utils.email_templates import single_verse_template as svt
+from django.views.generic import View
 from django import template
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.views.decorators.http import require_http_methods
+
+from utils.email_templates import single_verse_template as svt
+
 from .tasks import registration_email
 from .models import Subscriber
 from .forms import SubscriberForm
@@ -17,15 +21,10 @@ class HomePage(TemplateView):
     #           'faisaluddin01@gmail.com'], content_type='html')
 
 
-class SubscribeView(FormView):
-    form_class = SubscriberForm
-    template_name = 'read/subscriber_form.html'
-    success_url = '/'
-
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        instance = form.save()
-        registration_email.delay(instance.phone_number)
-
-        return super().form_valid(form)
+@require_http_methods(['POST'])
+def subscribe(self, request, *args, **kwargs):
+    user = SubscriberForm(request)
+    if user.is_valid():
+        return HttpResponse({'message': 'Success'})
+    else:
+        return HttpResponseBadRequest({'error': 'Invalid Data'})
