@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic import View
 from django import template
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 
 from utils.email_templates import single_verse_template as svt
@@ -22,9 +22,11 @@ class HomePage(TemplateView):
 
 
 @require_http_methods(['POST'])
-def subscribe(self, request, *args, **kwargs):
-    user = SubscriberForm(request)
+def subscribe(request, *args, **kwargs):
+    user = SubscriberForm(request.POST)
     if user.is_valid():
-        return HttpResponse({'message': 'Success'})
+        user.save()
+        return JsonResponse({'message': 'Success'}, status=201)
     else:
-        return HttpResponseBadRequest({'error': 'Invalid Data'})
+        print(user.errors)
+        return JsonResponse({'error': 'Invalid Data'}, status=400)

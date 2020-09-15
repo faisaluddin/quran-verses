@@ -254,10 +254,7 @@ function registerUser() {
   let csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
   fetch("/subscribe/", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "X-CSRFToken": csrftoken },
-    body: JSON.stringify({
-      name: formdata.get("name"),
-      phone_number: formdata.get("mobile"),
-    }),
+    headers: { "X-CSRFToken": csrftoken },
+    body: formdata,
   });
 }
