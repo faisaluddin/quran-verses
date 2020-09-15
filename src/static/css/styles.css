@@ -2,7 +2,6 @@
   font-family: "Kitab";
   src: url("//cdn.alquran.cloud/public/fonts/Kitab-Regular.ttf");
 }
-@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
 
 html {
   box-sizing: border-box;
@@ -94,6 +93,12 @@ body {
   width: 100%;
   box-shadow: 10px 5px 5px 0px grey;
   z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-image {
+  height: 30px;
 }
 
 .dropdown {
@@ -307,6 +312,10 @@ button:hover:enabled {
   gap: 10px;
 }
 
+.modal-image {
+  max-width: 120px;
+  align-self: center;
+}
 #close {
   width: 20px;
   margin-left: auto;
@@ -315,11 +324,88 @@ button:hover:enabled {
   color: #000;
 }
 
+#menu {
+  width: 35px;
+  height: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.bar {
+  height: 5px;
+  width: 100%;
+  background-color: black;
+  border-radius: 5px;
+  transition: 0.3s ease-in;
+}
+
+#bar1 {
+  transform: translateY(-4px);
+}
+#bar3 {
+  transform: translateY(4px);
+}
+
+.change .bar {
+  background-color: grey;
+}
+.change #bar1 {
+  transform: translateY(4px) rotatez(-45deg);
+}
+.change #bar3 {
+  transform: translateY(-6px) rotate(45deg);
+}
+
+.change #bar2 {
+  opacity: 0;
+}
+
+.sidenav li a {
+  color: #fff;
+  color: #000;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.sidenav li {
+  list-style: none;
+  padding: 10px 0;
+  border-bottom: 1px solid grey;
+}
+
+.sidenav {
+  transition: 0.3s ease;
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  background-color: #fff;
+  width: 250px;
+  height: 100%;
+  box-shadow: 6px 2px 6px 0px grey;
+  z-index: 2;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.sidenav li a:hover {
+  font-weight: bold;
+}
+
+#closeNav {
+  width: 20px;
+  margin-left: auto;
+  background: #fff;
+  border: none;
+  color: #000;
+}
+.change {
+  display: block;
+}
 @media only screen and (max-width: 920px) {
   .surah-header {
     flex-direction: column;
   }
-
   #surah-info {
     width: 100%;
     margin-bottom: 5px;
@@ -336,6 +422,9 @@ button:hover:enabled {
     width: 100%;
   }
 
+  .bar {
+    display: block;
+  }
   .surah-player {
     width: 100%;
   }
@@ -351,6 +440,9 @@ button:hover:enabled {
   .pop-up {
     left: 5px;
     right: 5px;
+  }
+  .change {
+    display: block;
   }
 }
 

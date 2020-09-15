@@ -1,6 +1,5 @@
 const ayahContainer = document.querySelector(".ayah-container");
 const surahDD = document.querySelector("#surah-options");
-
 const ayahDD = document.querySelector("#ayah-options");
 const numberOfAyah = document.getElementById("no-of-ayah");
 const revelationType = document.getElementById("revelation-type");
@@ -15,6 +14,12 @@ const nextSurahBtn = document.getElementById("next");
 const previousSurahBtn = document.getElementById("previous");
 const modal = document.querySelector(".modal");
 const closeModal = document.querySelector("#close");
+const hamburger = document.querySelector("#menu");
+const hamburgerContent = document.querySelector(".sidenav");
+const subscribe = document.querySelector(".subscribe");
+const closeNavButton = document.querySelector("#closeNav");
+const registerButton = document.querySelector("#register-btn");
+const modalForm = document.querySelector("#modal-form");
 const ayahAudio = [];
 let index = 1;
 let currentSurahIndex = 1;
@@ -209,8 +214,21 @@ function loadEventListener() {
   previousSurahBtn.addEventListener("click", previousSurah);
   closeModal.addEventListener("click", hide);
   document.addEventListener("keyup", closeModalOnEscape);
+  hamburger.addEventListener("click", toggleMenu);
+  subscribe.addEventListener("click", subscribeModal);
+  closeNavButton.addEventListener("click", toggleMenu);
+  modalForm.addEventListener("submit", handleForm);
+  registerButton.addEventListener("click", registerUser);
 }
 
+function subscribeModal() {
+  show(modal);
+}
+
+function toggleMenu() {
+  document.querySelector("#menu").classList.toggle("change");
+  document.querySelector(".sidenav").classList.toggle("change");
+}
 window.onresize = () => {
   document.querySelector(".container").style.paddingTop =
     navigations.offsetHeight + 4 + "px";
@@ -225,3 +243,21 @@ window.onload = () => {
   getData(1);
   loadEventListener();
 };
+
+function handleForm(event) {
+  event.preventDefault();
+}
+
+function registerUser() {
+  modalForm.preventDefault;
+  let formdata = new FormData(modalForm);
+  console.log("form data", formdata);
+  fetch("/subscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: formdata.name,
+      phone_number: formdata.mobile,
+    }),
+  });
+}
