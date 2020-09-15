@@ -1,8 +1,8 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from .views import HomePage, SubscribeView
+from .views import HomePage, subscribe
 
 urlpatterns = [
     path('', HomePage.as_view(), name='home'),
-    path('subscribe', SubscribeView.as_view(), name='subscribe'),
+    path('subscribe/', subscribe, name='subscribe'),
 ]
