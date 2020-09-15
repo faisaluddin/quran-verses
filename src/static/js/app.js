@@ -260,10 +260,18 @@ function registerUser() {
     body: formdata,
   }).then(response => {
     if (response.ok) {
-      console.log("inside");
       subscribeMessage.style.display = "block";
+      setTimeout(() => {
+        hide();
+        subscribeMessage.style.display = "none";
+        modalForm.reset();
+      }, 3000);
     } else {
       failedMessage.style.display = "block";
+      setTimeout(() => {
+        failedMessage.style.display = "none";
+        modalForm.reset();
+      }, 3000);
     }
   });
 }
