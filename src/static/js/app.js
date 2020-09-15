@@ -20,6 +20,8 @@ const subscribe = document.querySelector(".subscribe");
 const closeNavButton = document.querySelector("#closeNav");
 const registerButton = document.querySelector("#register-btn");
 const modalForm = document.querySelector("#modal-form");
+const subscribeMessage = document.querySelector(".subscribe-strip");
+const failedMessage = document.querySelector(".failed-message");
 const ayahAudio = [];
 let index = 1;
 let currentSurahIndex = 1;
@@ -256,5 +258,12 @@ function registerUser() {
     method: "POST",
     headers: { "X-CSRFToken": csrftoken },
     body: formdata,
+  }).then(response => {
+    if (response.ok) {
+      console.log("inside");
+      subscribeMessage.style.display = "block";
+    } else {
+      failedMessage.style.display = "block";
+    }
   });
 }

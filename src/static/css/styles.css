@@ -316,6 +316,29 @@ button:hover:enabled {
   max-width: 120px;
   align-self: center;
 }
+
+.subscribe-strip {
+  background-color: #73fa39;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  text-align-last: center;
+  font-weight: bold;
+  display: none;
+  padding-top: 8px;
+}
+
+.failed-message {
+  background-color: #f26d49;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  text-align-last: center;
+  font-weight: bold;
+  display: none;
+  padding-top: 8px;
+}
+
 #close {
   width: 20px;
   margin-left: auto;
