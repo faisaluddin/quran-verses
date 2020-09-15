@@ -251,13 +251,13 @@ function handleForm(event) {
 function registerUser() {
   modalForm.preventDefault;
   let formdata = new FormData(modalForm);
-  console.log("form data", formdata);
+  console.log("form data", formdata.get("mobile"));
   fetch("/subscribe", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      name: formdata.name,
-      phone_number: formdata.mobile,
+      name: formdata.get("name"),
+      phone_number: formdata.get("mobile"),
     }),
   });
 }
