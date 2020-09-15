@@ -28,5 +28,4 @@ def subscribe(request, *args, **kwargs):
         user.save()
         return JsonResponse({'message': 'Success'}, status=201)
     else:
-        print(user.errors)
         return JsonResponse({'error': 'Invalid Data'}, status=400)
