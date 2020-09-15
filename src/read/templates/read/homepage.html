@@ -9,6 +9,7 @@
           </span>
         </div>
         <form id="modal-form">
+        {% csrf_token %}
           <div>
             <label>Name :</label>
             <input class="input" type="text" name="name" />

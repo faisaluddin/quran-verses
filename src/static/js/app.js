@@ -251,10 +251,10 @@ function handleForm(event) {
 function registerUser() {
   modalForm.preventDefault;
   let formdata = new FormData(modalForm);
-  console.log("form data", formdata.get("mobile"));
-  fetch("/subscribe", {
+  let csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+  fetch("/subscribe/", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "X-CSRFToken": csrftoken },
     body: JSON.stringify({
       name: formdata.get("name"),
       phone_number: formdata.get("mobile"),
