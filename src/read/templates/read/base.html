@@ -39,8 +39,8 @@
          <li><button id="closeNav">&#10006</button></li>
          <li><img  src="../static/images/quran-verses.png"></li>
         <li><a class='subscribe' href="#">Subscribe </a></li>
-        <li><a href="#">Help & feedback</a></li>
-        <li><a href="/templates/read/contribute.html">Contribute</a></li>
+        <li><a href="feedback">Help & feedback</a></li>
+        <li><a class="nav-link" href="{% url 'contribute' %}">Contribute</a></li>
         </ul>
     <div class="container">{% block content %} {% endblock content %}</div>
   </body>
