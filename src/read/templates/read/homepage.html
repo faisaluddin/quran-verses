@@ -1,54 +1,25 @@
 {% extends 'read/base.html' %} {% block content %}
-    <div class="modal">
-      <div class="pop-up">
-        <button id="close">&#10005</button>
-        <img class="modal-image" src="../static/images/quran-verses.png" />
-        <div class="" id="heading-modal">
-          <span>
-            Please register with your whatsapp number to get one ayah daily on whatsapp
-          </span>
-        </div>
-        <form id="modal-form">
-        {% csrf_token %}
-          <div>
-            <label>Name :</label>
-            <input class="input" type="text" name="name" />
-          </div>
-          <div>
-            <label>Phone :</label>
-            <input class="input" type="number" name="phone_number"/>
-          </div>
-          <button type="submit" class="input button" id="register-btn">Subscribe</button>
-          <span class="subscribe-strip"> Subscribed successfully!!! </span>
-           <span class="failed-message"> Subscribtion Failed! Please try again </span>
-        </form>
-      </div>
+<!-- All the ayah. children generated via JS -->
+<div class="surah-container">
+  <div class="surah-header">
+    <div id="surah-info">
+      <span id="no-of-ayah"></span>
+      <span id="revelation-type"></span>
     </div>
-
-
-
-    <!-- All the ayah. children generated via JS -->
-    <div class="surah-container">
-        <div class="surah-header">
-          <div id="surah-info">
-            <span id="no-of-ayah"></span>
-            <span id="revelation-type"></span>
-          </div>
-          <div class="surah-player">
-            <span>Play surah:</span>
-            <audio id="surah-audio" width="1" controls="" preload="none">
-              <source src="" type="audio/mpeg" />
-            </audio>
-          </div>
-        </div>
-        <div class="ayah-container"></div>
-    </div> 
-
-    <!-- Next and previous button -->
-    <div class="buttons">
-      <button class="button" id="previous">Previous</button>
-      <button class="button" id="next">Next</button>
+    <div class="surah-player">
+      <span>Play surah:</span>
+      <audio id="surah-audio" width="1" controls="" preload="none">
+        <source src="" type="audio/mpeg" />
+      </audio>
     </div>
+  </div>
+  <div class="ayah-container"></div>
+</div>
 
+<!-- Next and previous button -->
+<div class="buttons">
+  <button class="button" id="previous">Previous</button>
+  <button class="button" id="next">Next</button>
+</div>
 
 {% endblock %}

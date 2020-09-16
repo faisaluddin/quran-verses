@@ -251,7 +251,6 @@ function handleForm(event) {
 }
 
 function registerUser() {
-  modalForm.preventDefault;
   let formdata = new FormData(modalForm);
   let csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
   fetch("/subscribe/", {

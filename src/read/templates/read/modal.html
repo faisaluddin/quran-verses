@@ -1,0 +1,25 @@
+  <div class="modal">
+      <div class="pop-up">
+        <button id="close">&#10005</button>
+        <img class="modal-image" src="../static/images/quran-verses.png" />
+        <div class="" id="heading-modal">
+          <span>
+            Please register with your whatsapp number to get one ayah daily on whatsapp
+          </span>
+        </div>
+        <form id="modal-form">
+        {% csrf_token %}
+          <div>
+            <label>Name :</label>
+            <input class="input" type="text" name="name" />
+          </div>
+          <div>
+            <label>Phone :</label>
+            <input class="input" type="number" name="phone_number"/>
+          </div>
+          <button type="submit" class="input button" id="register-btn">Subscribe</button>
+          <span class="subscribe-strip"> Subscribed successfully!!! </span>
+           <span class="failed-message"> Subscribtion Failed! Please try again </span>
+        </form>
+      </div>
+    </div>

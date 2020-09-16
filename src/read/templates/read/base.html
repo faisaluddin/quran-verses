@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
+  {% include "read/modal.html" %}
     <div class="spinner">
       <div class="rect1"></div>
       <div class="rect2"></div>
@@ -22,6 +23,7 @@
           <div id="bar2" class="bar"></div>
           <div id="bar3" class="bar"></div>          
         </div>
+      {% if view == 'home' %}
       <div class="dropdown">
         <button class="dropbtn" id="current-surah">Go To Surah</button>
         <div class="dropdown-content" id="surah-options"></div>
@@ -33,17 +35,22 @@
         </button>
         <div class="dropdown-content" id="ayah-options"></div>
       </div>
-      
+      {% endif %}
     </div>
     <ul id="sidenav" class="sidenav">
          <li><button id="closeNav">&#10006</button></li>
          <li><img  src="../static/images/quran-verses.png"></li>
         <li><a class='subscribe' href="#">Subscribe </a></li>
-        <li><a href="feedback">Help & feedback</a></li>
+        <li><a href="{% url 'feedback'  %}">Help & feedback</a></li>
         <li><a class="nav-link" href="{% url 'contribute' %}">Contribute</a></li>
         </ul>
     <div class="container">{% block content %} {% endblock content %}</div>
   </body>
-  <script src="{% static 'js/app.js' %}"></script>
+  {% if view == 'home'%}
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/hamburger.js' %}"></script>
+  {% else %}
+    <script src="{% static 'js/hamburger.js' %}"></script>
+  {% endif %}
   
 </html>
