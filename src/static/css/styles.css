@@ -402,7 +402,7 @@ button:hover:enabled {
   transition: 0.3s ease;
   display: none;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   background-color: #fff;
   width: 250px;
   height: 100%;
