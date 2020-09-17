@@ -16,6 +16,7 @@ html {
 body {
   padding: 0px;
   margin: 0px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .font-kitab {
@@ -229,7 +230,7 @@ audio {
 
 .translation {
   text-align: left;
-  font-size: 25px;
+  font-size: 18px;
 }
 
 .buttons {
@@ -477,13 +478,11 @@ button:hover:enabled {
   height: 400px;
   text-align: center;
   font-style: italic;
-  color: #666666;
 }
 
-.body_contribute {
+.body-contribute {
   padding: 20px;
   left: 300px;
-  color: #666666;
   text-align: left;
 }
 
