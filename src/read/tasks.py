@@ -5,6 +5,9 @@ from utils.email import send_email
 from time import sleep
 from django import template
 from utils.email_templates import single_verse_template as svt
+import requests
+import brotli
+import gzip
 
 
 @shared_task(name='test', ignore_result=True)
@@ -21,3 +24,10 @@ def registration_email(email):
                                 'english': 'Allah - there is no deity except Him, the Ever-Living, the Sustainer of [all] existence. Neither drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursi extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.'})
     send_email('Test from celery', svt(context=context), [
         'faisaluddin01@gmail.com'], content_type='html')
+
+
+def send_single_ayah():
+    res = requests.get(
+        'https://api.alquran.cloud/v1/ayah/262/editions/quran-uthmani-quran-academy')
+    print('plain res', res)
+    print('response is ', gzip.GzipFile(fileobj=res.raw).read())

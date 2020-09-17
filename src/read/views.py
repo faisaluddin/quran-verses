@@ -12,10 +12,12 @@ from .tasks import registration_email
 from .models import Subscriber
 from .forms import SubscriberForm
 from .constants import feedback_email
+from .tasks import send_single_ayah
 
 
 class HomePage(TemplateView):
     template_name = "read/homepage.html"
+    send_single_ayah()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
