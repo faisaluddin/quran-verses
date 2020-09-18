@@ -9,18 +9,30 @@ const subscribeMessage = document.querySelector(".subscribe-strip");
 const failedMessage = document.querySelector(".failed-message");
 const sendEmail = document.querySelector(".submit-email");
 const feedbackForm = document.querySelector(".feedback-form");
+const closeModal = document.querySelector("#close");
 
 function loadEventListener() {
   hamburger.addEventListener("click", toggleMenu);
   subscribe.addEventListener("click", subscribeModal);
   closeNavButton.addEventListener("click", toggleMenu);
   modalForm.addEventListener("submit", registerUser);
-  feedbackForm.addEventListener("submit", sendFeedback);
+  closeModal.addEventListener("click", hide);
+  document.addEventListener("keyup", closeModalOnEscape);
+  if (feedbackForm) feedbackForm.addEventListener("submit", sendFeedback);
 }
 
 function toggleMenu() {
   document.querySelector("#menu").classList.toggle("change");
   document.querySelector(".sidenav").classList.toggle("change");
+}
+
+function hide() {
+  modal.classList.remove("is-visible");
+  document.body.removeAttribute("style");
+}
+
+function closeModalOnEscape(e) {
+  if (e.key === "Escape") hide();
 }
 
 function subscribeModal() {

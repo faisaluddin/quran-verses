@@ -416,6 +416,10 @@ button:hover:enabled {
   font-weight: bold;
 }
 
+.sidenav li:last-child {
+  margin-top: auto;
+}
+
 #closeNav {
   width: 20px;
   margin-left: auto;
@@ -424,7 +428,8 @@ button:hover:enabled {
   color: #000;
 }
 .change {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 @media only screen and (max-width: 920px) {
   .surah-header {
@@ -465,8 +470,10 @@ button:hover:enabled {
     left: 5px;
     right: 5px;
   }
+
   .change {
     display: block;
+    flex-direction: column;
   }
 }
 .image_contribute {
