@@ -310,7 +310,7 @@ button:hover:enabled {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 6px;
 }
 
 .modal-image {
@@ -326,7 +326,6 @@ button:hover:enabled {
   text-align-last: center;
   font-weight: bold;
   display: none;
-  padding-top: 8px;
 }
 
 .failed-message {
@@ -405,7 +404,7 @@ button:hover:enabled {
   position: fixed;
   background-color: #fff;
   width: 250px;
-  height: 100%;
+  min-height: 100%;
   box-shadow: 6px 2px 6px 0px grey;
   z-index: 2;
   margin-top: 0;
@@ -422,15 +421,16 @@ button:hover:enabled {
 
 #closeNav {
   width: 20px;
-  margin-left: auto;
   background: #fff;
   border: none;
   color: #000;
 }
+
 .change {
   display: flex;
   flex-direction: column;
 }
+
 @media only screen and (max-width: 920px) {
   .surah-header {
     flex-direction: column;
@@ -515,7 +515,6 @@ textarea {
 }
 
 label {
-  padding: 12px 12px 12px 0;
   display: inline-block;
 }
 

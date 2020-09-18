@@ -12,16 +12,6 @@ const surahPlayerSrc = document.querySelector("#surah-audio source");
 const navigations = document.querySelector(".navbar");
 const nextSurahBtn = document.getElementById("next");
 const previousSurahBtn = document.getElementById("previous");
-const modal = document.querySelector(".modal");
-const closeModal = document.querySelector("#close");
-const hamburger = document.querySelector("#menu");
-const hamburgerContent = document.querySelector(".sidenav");
-const subscribe = document.querySelector(".subscribe");
-const closeNavButton = document.querySelector("#closeNav");
-const registerButton = document.querySelector("#register-btn");
-const modalForm = document.querySelector("#modal-form");
-const subscribeMessage = document.querySelector(".subscribe-strip");
-const failedMessage = document.querySelector(".failed-message");
 const ayahAudio = [];
 let index = 1;
 let currentSurahIndex = 1;
@@ -149,6 +139,7 @@ function showAyahDropdown() {
 function showSurahDropdown() {
   surahDD.removeAttribute("style");
 }
+
 function playCompleteSurah() {
   if (index < ayahAudio.length) {
     if (index === 0) index += 1;
@@ -192,20 +183,6 @@ function filterAyah(e) {
   });
 }
 
-function show(elem) {
-  elem.classList.add("is-visible");
-  document.body.style.overflow = "hidden";
-}
-
-function hide() {
-  modal.classList.remove("is-visible");
-  document.body.removeAttribute("style");
-}
-
-function closeModalOnEscape(e) {
-  if (e.key === "Escape") hide();
-}
-
 function loadEventListener() {
   surahDD.addEventListener("click", getNewSurah);
   ayahDD.addEventListener("click", goToAyah);
@@ -214,23 +191,8 @@ function loadEventListener() {
   surahPlayer.addEventListener("ended", playCompleteSurah);
   nextSurahBtn.addEventListener("click", nextSurah);
   previousSurahBtn.addEventListener("click", previousSurah);
-  closeModal.addEventListener("click", hide);
-  document.addEventListener("keyup", closeModalOnEscape);
-  hamburger.addEventListener("click", toggleMenu);
-  subscribe.addEventListener("click", subscribeModal);
-  closeNavButton.addEventListener("click", toggleMenu);
-  modalForm.addEventListener("submit", handleForm);
-  registerButton.addEventListener("click", registerUser);
 }
 
-function subscribeModal() {
-  show(modal);
-}
-
-function toggleMenu() {
-  document.querySelector("#menu").classList.toggle("change");
-  document.querySelector(".sidenav").classList.toggle("change");
-}
 window.onresize = () => {
   document.querySelector(".container").style.paddingTop =
     navigations.offsetHeight + 4 + "px";
@@ -239,38 +201,8 @@ window.onresize = () => {
 };
 
 window.onload = () => {
-  show(modal);
   document.documentElement.style.scrollPaddingTop = "50px";
   getSurahs();
   getData(1);
   loadEventListener();
 };
-
-function handleForm(event) {
-  event.preventDefault();
-}
-
-function registerUser() {
-  let formdata = new FormData(modalForm);
-  let csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
-  fetch("/subscribe/", {
-    method: "POST",
-    headers: { "X-CSRFToken": csrftoken },
-    body: formdata,
-  }).then(response => {
-    if (response.ok) {
-      subscribeMessage.style.display = "block";
-      setTimeout(() => {
-        hide();
-        subscribeMessage.style.display = "none";
-        modalForm.reset();
-      }, 3000);
-    } else {
-      failedMessage.style.display = "block";
-      setTimeout(() => {
-        failedMessage.style.display = "none";
-        modalForm.reset();
-      }, 3000);
-    }
-  });
-}

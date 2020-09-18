@@ -11,7 +11,7 @@ const sendEmail = document.querySelector(".submit-email");
 const feedbackForm = document.querySelector(".feedback-form");
 const closeModal = document.querySelector("#close");
 
-function loadEventListener() {
+function loadHamburgerEvents() {
   hamburger.addEventListener("click", toggleMenu);
   subscribe.addEventListener("click", subscribeModal);
   closeNavButton.addEventListener("click", toggleMenu);
@@ -24,11 +24,6 @@ function loadEventListener() {
 function toggleMenu() {
   document.querySelector("#menu").classList.toggle("change");
   document.querySelector(".sidenav").classList.toggle("change");
-}
-
-function hide() {
-  modal.classList.remove("is-visible");
-  document.body.removeAttribute("style");
 }
 
 function closeModalOnEscape(e) {
@@ -44,9 +39,10 @@ function show(elem) {
   document.body.style.overflow = "hidden";
 }
 
-window.onload = () => {
-  loadEventListener();
-};
+function hide() {
+  modal.classList.remove("is-visible");
+  document.body.removeAttribute("style");
+}
 
 function registerUser(e) {
   e.preventDefault();
@@ -74,11 +70,6 @@ function registerUser(e) {
   });
 }
 
-function hide() {
-  modal.classList.remove("is-visible");
-  document.body.removeAttribute("style");
-}
-
 function sendFeedback(e) {
   e.preventDefault();
   let formdata = new FormData(feedbackForm);
@@ -99,3 +90,5 @@ function sendFeedback(e) {
     }
   });
 }
+
+loadHamburgerEvents();
